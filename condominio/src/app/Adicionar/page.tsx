@@ -40,7 +40,7 @@ export default function AdicionarPage() {
               />
             </div>
 
-            {/*inputs formulário */}
+            {/*inputs formulárioo */}
             <div className="space-y-5">
             
               <div className="relative">
@@ -55,7 +55,6 @@ export default function AdicionarPage() {
                 />
               </div>
 
-             
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Mail size={20} className="text-[#17B689]" />
@@ -68,7 +67,6 @@ export default function AdicionarPage() {
                 />
               </div>
 
-             
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FileText size={20} className="text-[#17B689]" />
@@ -81,7 +79,6 @@ export default function AdicionarPage() {
                 />
               </div>
 
-              
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Lock size={20} className="text-[#17B689]" />
@@ -94,7 +91,6 @@ export default function AdicionarPage() {
                 />
               </div>
 
-             
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Lock size={20} className="text-[#17B689]" />
@@ -109,7 +105,6 @@ export default function AdicionarPage() {
             </div> 
           </div> 
 
-          
           <div className="flex items-center justify-center space-x-3 mt-8 w-full">
             <span 
               className={`cursor-pointer font-medium ${isMorador ? 'text-white' : 'text-gray-400 hover:text-gray-200'}`}
