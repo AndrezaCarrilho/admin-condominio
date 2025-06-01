@@ -2,9 +2,9 @@ import SideNav from "../Components/sidenav";
 
 export default function MoradoresLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: "flex" }}>
+    <div className="flex min-h-screen">
       <SideNav />
-      <main style={{ flex: 1, padding: "1rem" }}>
+      <main className="flex-1">
         {children}
       </main>
     </div>

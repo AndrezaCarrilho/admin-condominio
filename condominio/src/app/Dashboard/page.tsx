@@ -1,12 +1,11 @@
 'use client';
 
-import SideNav from '../Components/sidenav';
 import Image from 'next/image';
 
 export default function DashboardHome() {
   return (
     <div className="flex min-h-screen">
-      <SideNav />
+   
       <main className="flex-1 bg-[#F5F8FF] p-10 flex flex-col justify-between">
         {/* Texto e espaçamento */}
         <div className="flex flex-col lg:flex-row justify-between items-center gap-10 mb-12">
