@@ -16,42 +16,74 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const menuItems = [
   {
     label: 'Moradores',
     icon: <Home />,
-    subItems: ['Listar', 'Adicionar'],
+    subItems: [
+      { label: 'Cadastrar', path: '/moradores' },
+      { label: 'Adicionar', path: '/moradores/adicionar' }, 
+      { label: 'Histórico', path: '/moradores/historico' },
+    ],
   },
   {
     label: 'Veículos',
     icon: <Car />,
-    subItems: ['Listar', 'Adicionar'],
+    subItems: [
+        { label: 'Pré-Cadastro', path: '/veiculos' },
+      { label: 'Registro', path: '/veiculos/registro' },
+      { label: 'Histórico', path: '/veiculos/historico' },
+    ],
   },
   {
     label: 'Visitantes',
     icon: <Users />,
-    subItems: ['Histórico', 'Autorizar'],
+    subItems: [
+      { label: 'Pré-Cadastro', path: '/visitantes' },
+      { label: 'Registro', path: '/visitantes/registro' },
+      { label: 'Histórico', path: '/visitantes/historico' },
+    ],
   },
   {
     label: 'Encomendas',
     icon: <Package />,
-    subItems: ['Pendentes', 'Entregues'],
+    subItems: [
+      { label: 'Recebimento', path: '/encomendas/recebimento' },
+      { label: 'Notificar', path: '/encomendas/notificar' },
+      { label: 'Retirada', path: '/encomendas/retirada' },
+      { label: 'Historico', path: '/encomendas' },
+    ],
   },
   {
     label: 'Áreas comuns',
     icon: <LayoutGrid />,
-    subItems: ['Reservas', 'Cadastrar Área'],
+    subItems: [
+      { label: 'Churrasqueira', path: '/areas/churrasqueira' },
+      { label: 'Salão de Festas', path: '/areas/salaodefestas' },
+      { label: 'Academia', path: '/areas/academia' },
+      { label: 'Cancelar Reserva', path: '/areas/cancelarreserva' },
+      { label: 'Notificações', path: '/areas' },
+    ],
   },
   {
     label: 'Comunicação',
     icon: <MessageCircle />,
-    subItems: ['Avisos', 'Mensagens'],
+    subItems: [
+      { label: 'Avisos', path: '/comunicacao' },
+      { label: 'Info Importantes', path: '/comunicacao/infoimportantes' },
+      { label: 'Mensagem Direta', path: '/comunicacao/mensagemdireta' },
+    ],
   },
   {
     label: 'Dashboards',
     icon: <BarChart2 />,
-    subItems: ['Relatórios', 'Indicadores'],
+    subItems: [
+      { label: 'Visitantes', path: '/dashboards' },
+      { label: 'Avisos', path: '/dashboards/avisos' },
+      { label: 'Relatórios', path: '/dashboards/relatorios' },
+    ],
   },
 ];
 
@@ -67,18 +99,19 @@ const SideNav = () => {
     <div className={`bg-[#1b1f2d] text-white h-screen transition-all duration-300 ${isOpen ? 'w-64' : 'w-20'} flex flex-col`}>
       {/* Topo: logo e botão */}
       <div className="flex items-center justify-between p-4">
-        <div className="flex items-center space-x-2">
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={isOpen ? 40 : 30}
-            height={isOpen ? 40 : 30}
-          />
-        </div>
-        <button onClick={() => setIsOpen(!isOpen)} className="text-white">
-          <Menu />
-        </button>
-      </div>
+  <Link href="/Dashboard" className="flex items-center space-x-2">
+    <Image
+      src="/logo.png"
+      alt="Logo"
+      width={isOpen ? 40 : 30}
+      height={isOpen ? 40 : 30}
+      style={{ cursor: 'pointer' }}
+    />
+  </Link>
+  <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+    <Menu />
+  </button>
+</div>
 
       {/* Menu principal */}
       <div className="flex-1 px-2 space-y-5 overflow-y-auto mt-4">
@@ -102,13 +135,12 @@ const SideNav = () => {
             {/* Subitens */}
             {isOpen && openMenus[label] && (
               <div className="ml-8 mt-1 space-y-1">
-                {subItems.map((sub) => (
-                  <div
-                    key={sub}
-                    className="text-sm text-gray-300 hover:text-white cursor-pointer px-2 py-1 rounded hover:bg-[#3a3f57]"
-                  >
-                    {sub}
-                  </div>
+                {subItems.map(({ label: subLabel, path }) => (
+                  <Link href={path} key={subLabel}>
+                    <div className="text-sm text-gray-300 hover:text-white cursor-pointer px-2 py-1 rounded hover:bg-[#3a3f57]">
+                      {subLabel}
+                    </div>
+                  </Link>
                 ))}
               </div>
             )}
@@ -116,16 +148,20 @@ const SideNav = () => {
         ))}
 
         {/* Configurações */}
-        <div className="mt-8 hover:bg-[#2c3145] p-2 rounded cursor-pointer transition flex items-center space-x-3">
-          <Settings />
-          {isOpen && <span>Configurações</span>}
-        </div>
+        <Link href="/configuracoes">
+  <div className="mt-8 hover:bg-[#2c3145] p-2 rounded cursor-pointer transition flex items-center space-x-3">
+    <Settings />
+    {isOpen && <span>Configurações</span>}
+  </div>
+  </Link>
 
         {/* Sair */}
-        <div className="mt-2 hover:bg-[#2c3145] p-2 rounded cursor-pointer transition flex items-center space-x-3 text-red-400">
-          <LogOut />
-          {isOpen && <span>Sair</span>}
-        </div>
+       <Link href="/login">
+  <div className="mt-2 hover:bg-[#2c3145] p-2 rounded cursor-pointer transition flex items-center space-x-3 text-red-400">
+    <LogOut />
+    {isOpen && <span>Sair</span>}
+  </div>
+</Link>
       </div>
     </div>
   );

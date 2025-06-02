@@ -1,6 +1,6 @@
 'use client';
 
-import SideNav from '../Components/sidenav'; 
+
 import Image from 'next/image';
 import { User, Mail, FileText, Lock } from 'lucide-react'; 
 import { useState } from 'react';
@@ -18,7 +18,6 @@ export default function AdicionarPage() {
 
   return (
     <div className="flex h-screen bg-[#0D1A2E]"> 
-      <SideNav />
 
    
   <main
