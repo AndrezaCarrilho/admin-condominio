@@ -3,26 +3,30 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 
-const moradoresMock = [
-  { id: 1, nome: "José Antunes", tipo: "morador", apartamento: "101", periodo: "2018 - 2022" },
-  { id: 2, nome: "Constância Ribeiro", tipo: "inquilino", apartamento: "101", periodo: "2022 - 2024" },
-  { id: 3, nome: "João Batista", tipo: "morador", apartamento: "202", periodo: "2017 - 2021" },
-  { id: 4, nome: "Clara Lima", tipo: "inquilino", apartamento: "202", periodo: "2021 - 2023" },
-  { id: 5, nome: "Pedro Souza", tipo: "morador", apartamento: "301", periodo: "2016 - 2020" },
-  { id: 6, nome: "Fernanda Alves", tipo: "inquilino", apartamento: "301", periodo: "2020 - 2022" },
-  { id: 7, nome: "Lucas Pereira", tipo: "morador", apartamento: "401", periodo: "2015 - 2021" },
-  { id: 8, nome: "Ana Beatriz", tipo: "inquilino", apartamento: "401", periodo: "2021 - 2024" },
+const veiculosMock = [
+  { id: 1, nome: "José Antunes", tipo: "morador", placa: "ABC-1234", apartamento: "101" },
+  { id: 2, nome: "Constância Ribeiro", tipo: "visitante", placa: "XYZ-5678", apartamento: "101", dataHora: "02/06/2025 14:30" },
+  { id: 3, nome: "João Batista", tipo: "morador", placa: "JKL-3456", apartamento: "202" },
+  { id: 4, nome: "Clara Lima", tipo: "visitante", placa: "DEF-2345", apartamento: "202", dataHora: "01/06/2025 18:15" },
+  { id: 5, nome: "Pedro Souza", tipo: "morador", placa: "GHI-6789", apartamento: "301" },
+  { id: 6, nome: "Fernanda Alves", tipo: "visitante", placa: "MNO-4321", apartamento: "301", dataHora: "03/06/2025 10:00" },
+  { id: 7, nome: "Lucas Pereira", tipo: "morador", placa: "PQR-8765", apartamento: "401" },
+  { id: 8, nome: "Ana Beatriz", tipo: "visitante", placa: "STU-1098", apartamento: "401", dataHora: "03/06/2025 16:45" },
 ];
 
-export default function HistoricoMoradores() {
-  const [mostrarInquilinos, setMostrarInquilinos] = useState(false);
+export default function HistoricoVeiculos() {
+  const [mostrarVisitantes, setMostrarVisitantes] = useState(false);
   const [busca, setBusca] = useState("");
   const [paginaAtual, setPaginaAtual] = useState(1);
   const porPagina = 5;
 
-  const filtrados = moradoresMock.filter(m => {
-    const tipo = mostrarInquilinos ? "inquilino" : "morador";
-    const corresponde = m.tipo === tipo && (m.nome.toLowerCase().includes(busca.toLowerCase()) || m.apartamento.includes(busca));
+  const filtrados = veiculosMock.filter(v => {
+    const tipo = mostrarVisitantes ? "visitante" : "morador";
+    const corresponde = v.tipo === tipo && (
+      v.nome.toLowerCase().includes(busca.toLowerCase()) ||
+      v.placa.toLowerCase().includes(busca.toLowerCase()) ||
+      v.apartamento.includes(busca)
+    );
     return corresponde;
   });
 
@@ -34,13 +38,13 @@ export default function HistoricoMoradores() {
       <div className="bg-[#2ECC71] bg-opacity-90 p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-6xl">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-white">
-            {mostrarInquilinos ? "Histórico de Inquilinos" : "Histórico de Moradores"}
+            {mostrarVisitantes ? "Veículos de Visitantes" : "Veículos de Moradores"}
           </h1>
           <button
-            onClick={() => setMostrarInquilinos(!mostrarInquilinos)}
+            onClick={() => setMostrarVisitantes(!mostrarVisitantes)}
             className="bg-white text-[#17B689] font-semibold px-4 py-2 rounded-full hover:bg-[#e0e0e0] transition"
           >
-            {mostrarInquilinos ? "Ver Moradores" : "Ver Inquilinos"}
+            {mostrarVisitantes ? "Ver Moradores" : "Ver Visitantes"}
           </button>
         </div>
 
@@ -50,7 +54,7 @@ export default function HistoricoMoradores() {
           </div>
           <input
             type="text"
-            placeholder="Buscar por nome ou apto..."
+            placeholder="Buscar por nome, placa ou apto..."
             value={busca}
             onChange={e => {
               setBusca(e.target.value);
@@ -65,16 +69,18 @@ export default function HistoricoMoradores() {
             <thead className="bg-[#17B689] text-white text-left">
               <tr>
                 <th className="px-6 py-3">Nome</th>
+                <th className="px-6 py-3">Placa</th>
                 <th className="px-6 py-3">Apartamento</th>
-                <th className="px-6 py-3">Período</th>
+                {mostrarVisitantes && <th className="px-6 py-3">Data/Hora da visita</th>}
               </tr>
             </thead>
             <tbody>
-              {paginados.map((m) => (
-                <tr key={m.id} className="border-b border-gray-200">
-                  <td className="px-6 py-4">{m.nome}</td>
-                  <td className="px-6 py-4">{m.apartamento}</td>
-                  <td className="px-6 py-4">{m.periodo}</td>
+              {paginados.map((v) => (
+                <tr key={v.id} className="border-b border-gray-200">
+                  <td className="px-6 py-4">{v.nome}</td>
+                  <td className="px-6 py-4">{v.placa}</td>
+                  <td className="px-6 py-4">{v.apartamento}</td>
+                  {mostrarVisitantes && <td className="px-6 py-4">{v.dataHora}</td>}
                 </tr>
               ))}
             </tbody>

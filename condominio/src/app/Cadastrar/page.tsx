@@ -1,6 +1,5 @@
 'use client';
 
-import SideNav from '../Components/sidenav'; 
 import Image from 'next/image';
 
 
@@ -15,7 +14,7 @@ export default function CadastrarPage() {
 
   return (
     <div className="flex h-screen bg-[#0D1A2E]"> 
-      <SideNav />
+      
 
       <main
         className="flex-1 flex flex-col items-center justify-center p-6 bg-cover bg-center"
