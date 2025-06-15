@@ -60,11 +60,10 @@ const menuItems = [
     label: 'Áreas comuns',
     icon: <LayoutGrid />,
     subItems: [
-      { label: 'Churrasqueira', path: '/areas/churrasqueira' },
-      { label: 'Salão de Festas', path: '/areas/salaodefestas' },
-      { label: 'Academia', path: '/areas/academia' },
+      { label: 'Historico', path: '/areas' },
+      { label: 'Reservar Area', path: '/areas/reservar' },
       { label: 'Cancelar Reserva', path: '/areas/cancelarreserva' },
-      { label: 'Notificações', path: '/areas' },
+      { label: 'Notificações', path: '/areas/notificacao' },
     ],
   },
   {
@@ -72,19 +71,10 @@ const menuItems = [
     icon: <MessageCircle />,
     subItems: [
       { label: 'Avisos', path: '/comunicacao' },
-      { label: 'Info Importantes', path: '/comunicacao/infoimportantes' },
       { label: 'Mensagem Direta', path: '/comunicacao/mensagemdireta' },
     ],
   },
-  {
-    label: 'Dashboards',
-    icon: <BarChart2 />,
-    subItems: [
-      { label: 'Visitantes', path: '/dashboards' },
-      { label: 'Avisos', path: '/dashboards/avisos' },
-      { label: 'Relatórios', path: '/dashboards/relatorios' },
-    ],
-  },
+
 ];
 
 const SideNav = () => {
@@ -156,7 +146,7 @@ const SideNav = () => {
   </Link>
 
         {/* Sair */}
-       <Link href="/login">
+       <Link href="/Login">
   <div className="mt-2 hover:bg-[#2c3145] p-2 rounded cursor-pointer transition flex items-center space-x-3 text-red-400">
     <LogOut />
     {isOpen && <span>Sair</span>}
