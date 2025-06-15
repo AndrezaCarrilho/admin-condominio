@@ -144,7 +144,7 @@ export default function LandingPage() {
                 Sistema de <strong>USO RESTRITO</strong> para administração condominial
               </p>
               <p className="text-xs text-gray-300 mt-1">
-                <strong>MORADORES:</strong> Utilizem o APP disponível na Play Store ou Apple Store
+                <strong>MORADORES:</strong> Utilizem o APP disponível na Play Store
               </p>
             </div>
           </div>
