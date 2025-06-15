@@ -59,7 +59,7 @@ export default function LandingPage() {
                 Cadastrar Prédio
               </Link>
               <Link 
-                href="/login"
+                href="/Login"
                 className="border-2 border-white hover:bg-white hover:text-[#071E3D] text-white py-4 px-8 font-bold rounded-lg text-lg transition-colors"
               >
                 Fazer Login
