@@ -146,7 +146,7 @@ const SideNav = () => {
   </Link>
 
         {/* Sair */}
-       <Link href="/Login">
+       <Link href="/landingpage">
   <div className="mt-2 hover:bg-[#2c3145] p-2 rounded cursor-pointer transition flex items-center space-x-3 text-red-400">
     <LogOut />
     {isOpen && <span>Sair</span>}

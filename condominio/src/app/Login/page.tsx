@@ -9,23 +9,14 @@ export default function LoginPage() {
   const [predioId, setPredioId] = useState("");
   const [senha, setSenha] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:8080/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ predioId, senha }),
-      });
-
-      if (response.ok) {
-        router.push("/Dashboard");
-      } else {
-        alert("ID do prédio ou senha inválidos");
-      }
-    } catch (error) {
-      alert("Erro ao conectar com o servidor");
+    // Verificação local (sem backend)
+    if (predioId === "123" && senha === "123") {
+      router.push("/Dashboard");
+    } else {
+      alert("ID do prédio ou senha inválidos");
     }
   };
 
